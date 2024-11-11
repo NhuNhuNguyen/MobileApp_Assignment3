@@ -1,0 +1,137 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "759775da1737e8ba75cc965fa7c9e9b5",
+    "entities": [
+      {
+        "tableName": "Weather",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `latitude` REAL NOT NULL, `longitude` REAL NOT NULL, `generationtimeMs` REAL NOT NULL, `utcOffsetSeconds` INTEGER NOT NULL, `timezone` TEXT NOT NULL, `timezoneAbbreviation` TEXT NOT NULL, `elevation` REAL NOT NULL, `timeUnit` TEXT NOT NULL, `weatherCodeUnit` TEXT NOT NULL, `temperatureMaxUnit` TEXT NOT NULL, `temperatureMinUnit` TEXT NOT NULL, `dailyTime` TEXT NOT NULL, `dailyWeatherCode` TEXT NOT NULL, `dailyTemperatureMax` TEXT NOT NULL, `dailyTemperatureMin` TEXT NOT NULL, `city` TEXT NOT NULL, `isFavorite` INTEGER NOT NULL DEFAULT 0)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "latitude",
+            "columnName": "latitude",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "longitude",
+            "columnName": "longitude",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "generationtimeMs",
+            "columnName": "generationtimeMs",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "utcOffsetSeconds",
+            "columnName": "utcOffsetSeconds",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "timezone",
+            "columnName": "timezone",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "timezoneAbbreviation",
+            "columnName": "timezoneAbbreviation",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "elevation",
+            "columnName": "elevation",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "timeUnit",
+            "columnName": "timeUnit",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "weatherCodeUnit",
+            "columnName": "weatherCodeUnit",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "temperatureMaxUnit",
+            "columnName": "temperatureMaxUnit",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "temperatureMinUnit",
+            "columnName": "temperatureMinUnit",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "dailyTime",
+            "columnName": "dailyTime",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "dailyWeatherCode",
+            "columnName": "dailyWeatherCode",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "dailyTemperatureMax",
+            "columnName": "dailyTemperatureMax",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "dailyTemperatureMin",
+            "columnName": "dailyTemperatureMin",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "city",
+            "columnName": "city",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isFavorite",
+            "columnName": "isFavorite",
+            "affinity": "INTEGER",
+            "notNull": true,
+            "defaultValue": "0"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '759775da1737e8ba75cc965fa7c9e9b5')"
+    ]
+  }
+}
