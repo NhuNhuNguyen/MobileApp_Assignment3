@@ -5,5 +5,8 @@ import kotlinx.coroutines.flow.Flow
 interface WeatherRepository {
     suspend fun getAllWeather(): Flow<List<WeatherEntity>>
     suspend fun fetchRemoteWeather()
+    suspend fun updateFavorite(location: WeatherEntity)
+    suspend fun getFavoriteLocations(): Flow<List<WeatherEntity>>
+    suspend fun getLocationDetails(locationId: String): WeatherEntity
 
 }

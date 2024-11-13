@@ -20,12 +20,20 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
+import androidx.navigation.NavType
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import androidx.work.Constraints
 import androidx.work.ExistingWorkPolicy
 import androidx.work.NetworkType
@@ -36,10 +44,13 @@ import com.example.nhu_shukki_comp304_sec002_lab03.views.WeatherList
 import com.example.nhu_shukki_comp304_sec002_lab03.workers.WeatherSyncWorker
 import com.example.nhu_shukki_comp304_sec002_lab03.data.WeatherEntity
 import com.example.nhu_shukki_comp304_sec002_lab03.data.WeatherDao
+import com.example.nhu_shukki_comp304_sec002_lab03.views.FavoriteLocationsScreen
+import com.example.nhu_shukki_comp304_sec002_lab03.views.LocationsScreen
+import com.example.nhu_shukki_comp304_sec002_lab03.views.LocationDetailsScreen
 
 
-@OptIn(ExperimentalMaterial3Api::class)
 class MainActivity : ComponentActivity() {
+    @OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         startWeatherSync()
@@ -52,24 +63,26 @@ class MainActivity : ComponentActivity() {
         } else {
             Log.d("WeatherDatabase", "Database file does NOT exist.")
         }
-
-
         enableEdgeToEdge()
         setContent {
+            val navController = rememberNavController()
             Nhu_ShukKi_COMP304_Sec002_Lab03Theme {
                 Scaffold(
                     topBar = { PacktCenterAlignedTopBar() },
-                    bottomBar = { PacktBottomNavigationBar() },
+                    bottomBar = { PacktBottomNavigationBar(navController) },
                     content =  { paddingValues ->
-                        WeatherList(
+                        WeatherApp(
                             modifier = Modifier
                                 .fillMaxSize()
-                                .padding(paddingValues)
+                                .padding(paddingValues),
+                            navController = navController
+
                         )
                     }
                 )
             }
         }
+
     }
 
     private fun startWeatherSync() {
@@ -94,6 +107,39 @@ class MainActivity : ComponentActivity() {
 }
 
 
+@Composable
+fun WeatherApp(
+    modifier: Modifier,
+    navController: NavHostController
+){
+
+    NavHost(navController = navController, startDestination = "locationsScreen"){
+
+        composable("locationsScreen") {
+//            RitaActivityContent { navController.navigate("chanActivity") }
+            LocationsScreen(
+                modifier = modifier,
+                navController = navController
+            )
+        }
+
+        composable(
+            "locationDetailsScreen/{locationId}",
+            arguments = listOf(navArgument("locationId") { type = NavType.StringType })
+        ){backStackEntry ->
+            val locationId = backStackEntry.arguments?.getString("locationId") ?: ""
+            LocationDetailsScreen(locationId = locationId)
+
+        }
+
+        composable("favoriteLocationScreen"){
+            FavoriteLocationsScreen(modifier)
+        }
+
+
+    }
+}
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -112,19 +158,19 @@ fun PacktCenterAlignedTopBar() {
 }
 
 @Composable
-fun PacktBottomNavigationBar() {
+fun PacktBottomNavigationBar(navController: NavController) {
     NavigationBar {
         NavigationBarItem(
             icon = { Icon(Icons.Filled.Home, contentDescription = "Home") },
             label = { Text("Home") },
             selected = false,
-            onClick = { /* Handle navigation item click */ }
+            onClick = { navController.navigate("locationsScreen") }
         )
         NavigationBarItem(
             icon = { Icon(Icons.Filled.Favorite, contentDescription = "Favorites") },
             label = { Text("Favorites") },
             selected = false,
-            onClick = { /* Handle navigation item click */ }
+            onClick = { navController.navigate("favoriteLocationScreen") }
         )
     }
 }

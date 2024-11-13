@@ -19,6 +19,8 @@ data class WeatherEntity(
     val timezone: String,
     val timezoneAbbreviation: String,
     val elevation: Double,
+    val currentTemperature: Double,
+    val currentWeatherCode: Int,
     val timeUnit: String,  // ISO8601 date strings
     val weatherCodeUnit: String,
     val temperatureMaxUnit: String,
@@ -29,7 +31,7 @@ data class WeatherEntity(
     val dailyTemperatureMin: List<Double>,
     val city: String,
     @ColumnInfo(defaultValue = "0")
-    val isFavorite: Boolean
+    var isFavorite: Boolean
 
 /*
     val time: List<String>,  // ISO8601 date strings

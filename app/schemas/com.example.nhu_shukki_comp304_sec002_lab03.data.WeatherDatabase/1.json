@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "759775da1737e8ba75cc965fa7c9e9b5",
+    "identityHash": "d4b8615accef5e8f6f200d99409b040d",
     "entities": [
       {
         "tableName": "Weather",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `latitude` REAL NOT NULL, `longitude` REAL NOT NULL, `generationtimeMs` REAL NOT NULL, `utcOffsetSeconds` INTEGER NOT NULL, `timezone` TEXT NOT NULL, `timezoneAbbreviation` TEXT NOT NULL, `elevation` REAL NOT NULL, `timeUnit` TEXT NOT NULL, `weatherCodeUnit` TEXT NOT NULL, `temperatureMaxUnit` TEXT NOT NULL, `temperatureMinUnit` TEXT NOT NULL, `dailyTime` TEXT NOT NULL, `dailyWeatherCode` TEXT NOT NULL, `dailyTemperatureMax` TEXT NOT NULL, `dailyTemperatureMin` TEXT NOT NULL, `city` TEXT NOT NULL, `isFavorite` INTEGER NOT NULL DEFAULT 0)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `latitude` REAL NOT NULL, `longitude` REAL NOT NULL, `generationtimeMs` REAL NOT NULL, `utcOffsetSeconds` INTEGER NOT NULL, `timezone` TEXT NOT NULL, `timezoneAbbreviation` TEXT NOT NULL, `elevation` REAL NOT NULL, `currentTemperature` REAL NOT NULL, `currentWeatherCode` INTEGER NOT NULL, `timeUnit` TEXT NOT NULL, `weatherCodeUnit` TEXT NOT NULL, `temperatureMaxUnit` TEXT NOT NULL, `temperatureMinUnit` TEXT NOT NULL, `dailyTime` TEXT NOT NULL, `dailyWeatherCode` TEXT NOT NULL, `dailyTemperatureMax` TEXT NOT NULL, `dailyTemperatureMin` TEXT NOT NULL, `city` TEXT NOT NULL, `isFavorite` INTEGER NOT NULL DEFAULT 0)",
         "fields": [
           {
             "fieldPath": "id",
@@ -54,6 +54,18 @@
             "fieldPath": "elevation",
             "columnName": "elevation",
             "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "currentTemperature",
+            "columnName": "currentTemperature",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "currentWeatherCode",
+            "columnName": "currentWeatherCode",
+            "affinity": "INTEGER",
             "notNull": true
           },
           {
@@ -131,7 +143,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '759775da1737e8ba75cc965fa7c9e9b5')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'd4b8615accef5e8f6f200d99409b040d')"
     ]
   }
 }

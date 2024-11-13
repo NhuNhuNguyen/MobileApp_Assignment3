@@ -9,8 +9,9 @@ interface WeatherAPI {
     suspend fun fetchWeather(
         @Query("latitude") latitude: String,
         @Query("longitude") longitude: String,
+        @Query("current") current: String,
         @Query("daily") daily: String,
-        @Query("timezone") timezone: String,
+        @Query("timezone") timezone: String
     ): Response<LocationWeather>
 //    ): Response<List<LocationWeather>>
 }

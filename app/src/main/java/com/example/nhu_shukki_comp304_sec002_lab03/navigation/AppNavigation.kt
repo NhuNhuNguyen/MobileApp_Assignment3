@@ -19,7 +19,7 @@ import com.example.nhu_shukki_comp304_sec002_lab03.views.FavoriteLocationsScreen
 
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
-
+/*
 @Composable
 fun AppNavigation(
     contentType: ContentType,
@@ -43,10 +43,12 @@ fun AppNavigation(
             )
         }
 
-        composable(Screens.FavoriteLocationsScreen.route) {
-            FavoriteLocationsScreen(
-
-            )
-        }
+//        composable(Screens.FavoriteLocationsScreen.route) {
+//            FavoriteLocationsScreen(
+//
+//            )
+//        }
     }
 }
+
+ */

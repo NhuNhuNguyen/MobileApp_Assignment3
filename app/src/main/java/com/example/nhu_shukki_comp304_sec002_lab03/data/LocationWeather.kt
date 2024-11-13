@@ -19,12 +19,40 @@ data class LocationWeather (
     val timezone_abbreviation: String,
     @SerialName("elevation")
     val elevation: Double,
+    @SerialName("current_units")
+    val currentUnits: CurrentUnits,
+    @SerialName("current")
+    val current: Current,
     @SerialName("daily_units")
     val daily_units: DailyUnits,
     @SerialName("daily")
     val daily: Daily,
     val isFavorite: Boolean = false
 
+)
+
+@Serializable
+data class CurrentUnits(
+    @SerialName("time")
+    val time: String,
+    @SerialName("interval")
+    val interval: String,
+    @SerialName("temperature_2m")
+    val temperature_2m: String,
+    @SerialName("weather_code")
+    val weather_code: String,
+)
+
+@Serializable
+data class Current(
+    @SerialName("time")
+    val time: String,
+    @SerialName("interval")
+    val interval: Double,
+    @SerialName("temperature_2m")
+    val temperature_2m: Double,
+    @SerialName("weather_code")
+    val weather_code: Int
 )
 
 @Serializable

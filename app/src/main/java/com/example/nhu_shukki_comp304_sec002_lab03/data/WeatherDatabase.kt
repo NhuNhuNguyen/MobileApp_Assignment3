@@ -8,6 +8,9 @@ import androidx.room.TypeConverters
 @Database(
     entities = [WeatherEntity::class],
     version = 1, // Initial version of the database
+//    autoMigrations = [
+//        AutoMigration(from = 1, to = 2)
+//    ],
     exportSchema = true
 )
 @TypeConverters(WeatherConverters::class)
